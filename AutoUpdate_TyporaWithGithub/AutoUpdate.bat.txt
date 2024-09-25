@@ -1,0 +1,51 @@
+@echo off
+chcp 65001 >nul
+
+REM :: AutoUpdate.git
+REM :: 在运行之前，要先在你的本地生成一对ssh的公钥和秘钥，把公钥配置在你的github账户上。
+REM :: 自动上传脚本，双击bat文件运行，自动上传至你所连接的github库上。
+REM :: 脚本运行前两行的报错是一些什么注释奇怪标识符的问题，不影响正常使用，想要不显示报错把这几行注释删掉就好了。（我也不知道为什么）
+
+echo AutoUpdate to github
+echo HHHHHHHHHHHHHHHHHHHHHHH
+
+if not exist ".git" (
+    REM 第一次运行脚本，如果没有目录仓库初始化的话，会自动初始化，并进行第一次上传github。
+    echo Current directory is not initialized, initializing...
+    echo "# notebook" >> README.md
+    git init
+    REM 你github远程仓库的ssh链接地址，把这个地址替换成你自己的仓库地址：git@github.com:你的github用户名/你的仓库名.git
+    REM 上传至你github远程仓库时报错，有可能是你ssh公钥没有配置。（小提示）
+	git remote add origin git@github.com:nikoni233/notebook.git
+    git add .
+    git commit -m "This is a initial commit"
+    git branch -M main
+    git push -u origin main
+    REM 初始化操作写入日志，上传日志
+    echo Initialization log and first commit.[%date% %time%] >> Update.log
+	git add Update.log
+	git commit -m "auto update log"
+	git push
+)else (
+	git status --porcelain | findstr . >nul
+	if errorlevel 1 (
+	REM 没有文件更新，不上传
+	echo No files changed.
+	)else (
+		REM 有文件更新，进行上传
+		echo File changed.Commit changed files.
+		git add .
+		git commit -m "auto update files"
+		git push
+		REM 更新写入日志，上传日志
+    	echo Auto update files.[%date% %time%] >> Update.log
+		git add Update.log
+		git commit -m "auto update log"
+		git push
+
+	)
+
+)
+
+
+timeout /t 30

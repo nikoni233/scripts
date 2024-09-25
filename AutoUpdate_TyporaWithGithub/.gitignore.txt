@@ -1,0 +1,3 @@
+AutoUpdate.bat
+AutoTest.bat
+Auto*.bat
