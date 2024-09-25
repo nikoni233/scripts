@@ -1,6 +1,10 @@
 ### typora+github云笔记，自动上传脚本
 
-**食用方法：**
+**项目链接：**[点我，快速访问(github.com)](https://github.com/nikoni233/scripts/tree/main/AutoUpdate_TyporaWithGithub)
+
+---
+
+#### **食用方法：**
 
 1. 在运行之前，要先在你的本地生成一对ssh的公钥和秘钥，把公钥配置在你的github账户上。
 2. 把`AutoUpdate.bat`和`.gitignore`文件，放到你笔记文件的根目录下，就是跟`.git`在同一目录下。
@@ -25,4 +29,8 @@ Auto*.bat
 ```
 
 
+
+#### 更多详细内容：
+
+文档：[notebook/typora笔记，包括云笔记搭建/typora+github云笔记.md at main · nikoni233/notebook](https://github.com/nikoni233/notebook/blob/main/typora笔记，包括云笔记搭建/typora%2Bgithub云笔记.md)
 

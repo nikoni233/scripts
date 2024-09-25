@@ -1,6 +1,9 @@
 ### ip_ping 脚本 .bat .sh
 
 本项目用于批量ping一些ip的时候。
+**项目链接：**[点我，快速访问(github.com)](https://github.com/nikoni233/scripts/tree/main/IP_auto_ping)
+
+---
 
 #### 文件：
 

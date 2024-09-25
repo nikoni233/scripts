@@ -1,5 +1,9 @@
 ### 监测违规IP并封禁的脚本
 
+**项目链接：**[点我，快速访问(github.com)](https://github.com/nikoni233/scripts/tree/main/IP_auto_deny)
+
+---
+
 #### **食用方法：**
 
 1. 把`ip_deny_en.sh`或``ip_deny_zh.sh`下载到你的linux系统中，找一个目录存放。
@@ -25,7 +29,9 @@ IP白名单文件，你在这里添加的IP都不会被脚本识别给ban掉。
 
 
 
+#### 更多详细内容：
 
+文档：[notebook/linux、shell、git学习/06.02、SecureLog系统登录日志及相关管理脚本.md at main · nikoni233/notebook (github.com)](https://github.com/nikoni233/notebook/blob/main/linux、shell、git学习/06.02、SecureLog系统登录日志及相关管理脚本.md)
 
 
 

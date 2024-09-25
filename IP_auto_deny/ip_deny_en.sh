@@ -7,7 +7,7 @@
 #			  - The number of failed login attempts exceeds the maximum number of allowed error connections set
 #			  - Outside the whitelist of the script
 #Version: 1.0
-#WebLink:GitHub(waiting upload)
+#WebLink:https://github.com/nikoni233/scripts/tree/main/IP_auto_deny
 #
 #
 # The Script Basic Parameters
