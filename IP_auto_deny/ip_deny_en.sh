@@ -71,7 +71,7 @@ echo "$DENYS" | while read VISITS IP; do
 	elif iptables -L OUTPUT -v -n | grep -q "$IP"; then
         echo "$IP already exists."
     else
-		iptables -A OUTPUT -d $IP -j DROP
+		iptables -A INPUT -d $IP -j DROP
 		#iptables -A INPUT -p tcp -d $IP --dport 22 -j REJECT
 		echo "$IP has been added."
 		LATEST_DATE=$(cat ${LOGDIR}/${LOG_NAME} | grep -i "failed" | grep "from" | grep "$IP" | awk '{print $1, $2, $3}' | tail -n 1)

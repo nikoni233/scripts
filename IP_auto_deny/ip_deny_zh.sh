@@ -6,7 +6,7 @@
 #		- 尝试登录失败次数超过大于设定的允许最大错误连接次数
 #		- 在脚本的白名单之外
 #版本： 1.0
-#项目链接：https://github.com/nikoni233/scripts/tree/main/IP_auto_deny
+#https://github.com/nikoni233/scripts/tree/main/IP_auto_deny
 #注：（如果运行有问题就把中文注释删掉）（或者用_en版本）
 #
 # 基础参数
@@ -70,7 +70,7 @@ echo "$DENYS" | while read VISITS IP; do
 	elif iptables -L OUTPUT -v -n | grep -q "$IP"; then
         echo "$IP already exists."
     else
-		iptables -A OUTPUT -d $IP -j DROP
+		iptables -A INPUT -d $IP -j DROP
 		#iptables -A INPUT -p tcp -d $IP --dport 22 -j REJECT
 		echo "$IP has been added."
 		LATEST_DATE=$(cat ${LOGDIR}/${LOG_NAME} | grep -i "failed" | grep "from" | grep "$IP" | awk '{print $1, $2, $3}' | tail -n 1)
