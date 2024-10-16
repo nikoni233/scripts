@@ -1,0 +1,50 @@
+<!-- xss注入部分 -->
+<h1>XSS</h1>
+<input id="input1"/><button onclick="xss_func()">提交</button>
+<div id="displayArea">
+    </div>
+
+<script>
+   function xss_func(){
+        var content = document.getElementById('input1').value
+        document.getElementById('displayArea').innerHTML = content; //把用户输出的内容显示在页面上
+        fetch('/setContent',{
+            headers:{
+                "content-Type": "application/json"
+            },
+            method:"POST",
+            body:JSON.stringify({content}),
+        }).then(res=>{
+        })
+}
+</script>
+
+<!-- SQL注入部分 -->
+<h1>SQL</h1>
+<input id="input2" placeholder="用户名"/>
+<input id="input3" placeholder="密码"/>
+<button onclick="sql_func()">提交</button>
+<div id="userInfo"></div>
+
+<script>
+    function sql_func(){
+        var username = document.getElementById('input2').value;
+        var password = document.getElementById('input3').value;
+        fetch('/login', {
+            headers: {
+                "content-Type": "application/json"
+            },
+            method: "POST",
+            body: JSON.stringify({ username, password }),
+        })
+        .then(res => res.json())
+        .then(data => {
+            alert(data.message); // 显示登录成功或失败的消息
+            if (data.userInfo) { // 如果有用户信息，显示在页面上
+                const userInfoDiv = document.getElementById('userInfo');
+                // 将用户信息转化为字符串
+                userInfoDiv.innerHTML = `用户信息: ${JSON.stringify(data.userInfo)}`;
+            }
+        });
+    }
+</script>
