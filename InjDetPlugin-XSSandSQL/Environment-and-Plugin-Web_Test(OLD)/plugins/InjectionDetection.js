@@ -5,6 +5,13 @@ const path = require('path');
 const sqlInjectionPatterns = JSON.parse(fs.readFileSync(path.join(__dirname, '../attackVectors/sqlInjection.json')));
 const xssInjectionPatterns = JSON.parse(fs.readFileSync(path.join(__dirname, '../attackVectors/xssInjection.json')));
 
+// 创建日志文件夹
+function ensureLogDirectoryExists(logDir) {
+    if (!fs.existsSync(logDir)) {
+        fs.mkdirSync(logDir, { recursive: true }); // 创建 logs 文件夹及其父文件夹
+    }
+}
+
 // 初始化日志文件
 function initializeLogFile(logPath) {
     if (!fs.existsSync(logPath)) {
@@ -19,7 +26,10 @@ function initializeLogFile(logPath) {
 
 // 日志记录函数
 function logAttack(type, ip, input) {
-    const logPath = path.join(__dirname, '../logs/InjDetLogs.json');
+    const logDir = path.join(__dirname, '../logs');
+    const logPath = path.join(logDir, 'InjDetLogs.json');
+    
+    ensureLogDirectoryExists(logDir); // 确保 logs 文件夹已存在
     initializeLogFile(logPath); // 确保日志文件已初始化
 
     let currentLogs = [];
@@ -48,7 +58,8 @@ function detectInjection(req, res, next) {
 
     // 检测SQL注入
     for (const pattern of sqlInjectionPatterns) {
-        if (userInput.includes(pattern)) {
+        const regex = new RegExp(pattern, 'i'); // 不区分大小写匹配
+        if (regex.test(userInput)) {
             logAttack('SQL Injection', userIp, userInput);
             return res.status(400).send('SQL Injection detected');
         }
@@ -56,7 +67,8 @@ function detectInjection(req, res, next) {
 
     // 检测XSS注入
     for (const pattern of xssInjectionPatterns) {
-        if (userInput.includes(pattern)) {
+        const regex = new RegExp(pattern, 'i'); // 不区分大小写匹配
+        if (regex.test(userInput)) {
             logAttack('XSS Injection', userIp, userInput);
             return res.status(400).send('XSS Injection detected');
         }

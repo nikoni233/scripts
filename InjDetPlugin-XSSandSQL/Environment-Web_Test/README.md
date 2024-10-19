@@ -1,8 +1,8 @@
-## sql注入和xss攻击的入侵检测插件的web靶场环境搭建
+## 【靶场环境搭建】sql注入和xss攻击的入侵检测插件的web靶场环境搭建
 
 Web Basic Environment - Intrusion Detection Plug-In Based On SQL Injection And XSS Attack **(Only Environment)**
 
-插件载入测试环境，详见：[点我跳转](https://github.com/nikoni233/scripts/tree/main/Web_Basic_Environment--Injection_Detection_Plug-In_Based_On_SQL_Injection_And_XSS_Attack)
+插件载入测试环境，详见：[点我跳转](https://github.com/nikoni233/scripts/tree/main/InjDetPlugin-XSSandSQL/Environment-and-Plugin-Web_Test)
 
 
 
