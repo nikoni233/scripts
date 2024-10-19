@@ -2,7 +2,7 @@
 
 Web Basic Environment - Intrusion Detection Plug-In Based On SQL Injection And XSS Attack
 
-纯web靶场环境，详见：[点我跳转](https://github.com/nikoni233/scripts/tree/main/Web_Basic_Environment_-_Only Environment_-_InjDet-Plug-In_Based_XAS-Attack)
+纯web靶场环境，详见：[点我跳转](https://github.com/nikoni233/scripts/tree/main/Web_Basic_Environment--Only_Environment--InjDet-Plug-In_Based_XAS-Attack)
 
 ---
 
