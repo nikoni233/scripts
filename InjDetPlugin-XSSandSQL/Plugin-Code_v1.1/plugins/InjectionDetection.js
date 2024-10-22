@@ -22,6 +22,14 @@ function ensureLogDirectoryExists(logDir) {
     }
 }
 
+// 检查并创建 blacklists 文件夹
+function ensureBlacklistDirectoryExists() {
+    const blacklistsDir = path.join(__dirname, '../blacklists');
+    if (!fs.existsSync(blacklistsDir)) {
+        fs.mkdirSync(blacklistsDir, { recursive: true });
+    }
+}
+
 // 初始化文件
 function initializeFile(filePath, initialContent) {
     if (!fs.existsSync(filePath)) {
@@ -153,7 +161,9 @@ function detectInjection(req, res, next) {
     const userIp = req.ip;
 
     // 初始化永久黑名单（如果不存在）
+    ensureBlacklistDirectoryExists();
     initializePermBlacklist();
+
 
     // 检查IP是否在黑名单中
     const blacklistCheck = checkBlacklist(userIp);
